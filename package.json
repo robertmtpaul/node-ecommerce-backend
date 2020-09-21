@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "seed": "node seeds.js",
-    "start": "nodemon index.js"
+    "start": "index.js"
   },
   "repository": {
     "type": "git",
@@ -29,9 +29,7 @@
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.6"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.4"
-  },
+  "devDependencies": {},
   "engines": {
     "node": "v12.16.1"
   }

@@ -46,8 +46,8 @@ const SERVER_SECRET_KEY = 'CHICKEN'; //TODO: move to .env
 
 //Initialise Express server
 app.listen(PORT, () => {
-    console.log(`server listening on port ${PORT}...`)
-    console.log(`server started at http://localhost:${PORT}`)
+    console.log(`server listening on port ${process.env.PORT}...`)
+    console.log(`server started at http://localhost:${process.env.PORT}`)
 })
 
 // ====================LOGINS===============================//
