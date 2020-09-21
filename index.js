@@ -1,17 +1,22 @@
 const express = require('express');
-// const router = express.Router()
-// module.exports = router
+// Import express router:
+const router = express.Router()
+// module.exports = router:
 const app = express();
-// Import mongoose module
+// Import mongoose module:
 const mongoose = require("mongoose");
+// Give access to mongoose models:
 const Product = require('./models/Product')
 const User = require('./models/User')
+// For accessing the routes definded in userRoute.js:
 const userRoute = require('./routes/userRoute')
-
-//For preventing CORS errors from frontend requests.
+// For preventing CORS errors from frontend requests.
 const cors = require('cors');
-const { response } = require('express');
 app.use(cors());
+// For hashing passwords on login:
+const bcrypt = require('bcrypt');
+// For login decoding:
+const jwtAuthenticate = require('express-jwt')
 
 //To enable support for JSON-encoded request bodies
 app.use(express.json());
@@ -47,8 +52,7 @@ app.listen(PORT, () => {
 // ====================LOGINS===============================//
 
 // TODO: install bcrypt
-//For checking passwords on login
-// const bcrypt = require...
+
 
 
 
