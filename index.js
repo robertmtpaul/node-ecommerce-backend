@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 // Import mongoose module
 const mongoose = require("mongoose");
+const Product = require('./models/Product')
+const User = require('./models/User')
 const userRoute = require('./routes/userRoute')
 
 //For preventing CORS errors from frontend requests.
@@ -52,7 +54,23 @@ app.listen(PORT, () => {
 
 // ========================JSON===============================// 
 
-app.use("/users/", userRoute);
+// GET /users: JSON index of all users.
+app.get("/users", (request, response) => {
+    // const seeds = require('./seeds-products.js');
+    // res.json(seeds.products);
+    db.collection('users').find().toArray((error, result) => {
+
+        if (error) {
+            console.log('Query error: ', error);
+            return response.sendStatus(500); // report erorr at HTTP 500 to browser
+        }
+        response.json(result); // send the products DB results back to the browser as JSON.
+        // console.log('response', response.json);
+
+    });
+
+}); // GET /users
+
 
 // GET /products: JSON index of all products.
 app.get("/products", (request, response) => {
@@ -72,10 +90,10 @@ app.get("/products", (request, response) => {
 }); // GET /products
 
 // GET /product/:id JSON product details
-app.get('/products/name', (request, response) => {
+app.get('/products/:id', (request, response) => {
     // response.json( request.params)
     db.collection('products').findOne(
-        { name: request.params.name },
+        { product_id : request.params._id },
         (error, product) => {
             if (error) {
                 response.sendStatus(500);

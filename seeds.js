@@ -1,7 +1,7 @@
 // Connect Mongo database to server
 const mongoose = require('mongoose');
-const Product = require('../models/Product');
-const User = require('../models/User');
+const Product = require('./models/Product');
+const User = require('./models/User');
 const bcrypt = require('bcrypt');
 const mongoDB = 'mongodb://127.0.0.1:27017/shopping'
 
@@ -17,6 +17,8 @@ db.once('open', async () => {
 
     const products = await seedProducts();
     const users = await seedUsers();
+
+    await printReport();
 
     console.log(`Created ${products.length} Products. `);
     console.log(`Created ${users.length} Users. `);
@@ -37,7 +39,8 @@ const seedProducts = async () => {
                 brand: 'Sony',
                 rating: 4.2,
                 numReviews: 10,
-                quantity: 4
+                quantity: 4,
+                description: "He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. I think the only difference between me and the other placeholder text is that I’m more honest and my words are more beautiful.",
             },
             {
                 name: 'Nice Suitcase',
@@ -47,7 +50,8 @@ const seedProducts = async () => {
                 brand: 'Samsonite',
                 rating: 4.5,
                 numReviews: 5,
-                quantity: 33
+                quantity: 33,
+                description: "I think the only difference between me and the other placeholder text is that I’m more honest and my words are more beautiful. The best taco bowls are made in Trump Tower Grill. I love Hispanics! Be careful, or I will spill the beans on your placeholder text. The concept of Lorem Ipsum was created by and for the Chinese in order to make U.S. design jobs non-competitive.",
             },
             {
                 name: 'Xbox',
@@ -57,7 +61,8 @@ const seedProducts = async () => {
                 brand: 'Microsoft',
                 rating: 2.2,
                 numReviews: 2,
-                quantity: 22
+                quantity: 22,
+                description: "An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. My text is long and beautiful, as, it has been well documented, are various other parts of my website.",
             },
             {
                 name: 'Wii',
@@ -67,7 +72,8 @@ const seedProducts = async () => {
                 brand: 'Nintendo',
                 rating: 2.2,
                 numReviews: 3,
-                quantity: 221
+                quantity: 221,
+                description: "An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. You're telling the enemy exactly what you're going to do. No wonder you've been fighting Lorem Ipsum your entire adult life.",
             }
         ]);
     } catch (err) {
@@ -105,11 +111,41 @@ const seedUsers = async () => {
                 bio: 'Rando 4',
             }
         ]);
-    } catch(err) {
+    } catch (err) {
         console.log('Error creating users: ', err);
         process.exit(1);
     }
 } // seedUsers
 
+const printReport = async () => {
 
+    // console colours
+    const yellow = '\x1b[33m',
+        green = '\x1b[32m',
+        blue = '\x1b[34m',
+        reset = '\x1b[0m';
 
+    const productCheck = await Product.find()
+    
+    productCheck.forEach(p => {
+        console.log(
+            green, `${p.name}:`, yellow, `${p.category}, ${p.price}`,
+            blue, `(${p.brand})`, reset,
+        );
+    }) //productCheck
+
+    const userCheck = await User.find()
+    .populate({
+      path: 'reservations.flight', // Mongoose populates this association
+      // model: 'Flight'
+    });
+  
+    userCheck.forEach(u => {
+      console.log(
+        yellow, `${u.name}`, green, `(${u.email}):`, reset,
+      );
+    });
+  
+
+    
+}; // printReport()
