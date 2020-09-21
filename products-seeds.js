@@ -3,26 +3,26 @@
 const MongoClient = require('mongodb').MongoClient;
 let db;
 
-MongoClient.connect('mongodb://127.0.0.27017', { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {
+MongoClient.connect('mongodb://127.0.0.1:27017', { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
 
-    if (error){
-        console.log(error);
-    return; // early return on error) 
+    if (err) {
+        console.log(err);
+        return; // early return on error) 
     } // error handler
 
-    db = client.db( 'shopping' ); 
+    db = client.db('shopping');
     console.log('Connected, using db: shopping') //success message
 
-    db.collection('products').deleteMany({}, (error, result) => {
-        if(error) return console.log('Failed to delete products', error);
-        insertProducts();
+    db.collection('products').deleteMany({}, (err, result) => {
+        if (err) return console.log('Failed to delete products', err);
     });
-
+    
+    insertProducts();
 })
 
 const insertProducts = () => {
 
-    db.collection('flights').insertMany([
+    db.collection('products').insertMany([
         {
             name: 'PS5',
             category: 'Electronics',
@@ -30,7 +30,8 @@ const insertProducts = () => {
             price: 200,
             brand: 'Sony',
             rating: 4.2,
-            numReviews: 10
+            numReviews: 10,
+            quantity: 4
         },
         {
             name: 'Nice Suitcase',
@@ -39,7 +40,8 @@ const insertProducts = () => {
             price: 200,
             brand: 'Samsonite',
             rating: 4.5,
-            numReviews: 5
+            numReviews: 5,
+            quantity: 33
         },
         {
             name: 'Xbox',
@@ -48,22 +50,25 @@ const insertProducts = () => {
             price: 200,
             brand: 'Microsoft',
             rating: 2.2,
-            numReviews: 2
+            numReviews: 2,
+            quantity: 22
         },
         {
-            _id: '4',
             name: 'Wii',
             category: 'Travel',
             image: 'https://images.unsplash.com/10/wii.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
             price: 200,
             brand: 'Nintendo',
             rating: 2.2,
-            numReviews: 3
-        },
+            numReviews: 3,
+            quantity: 221
+        }
+    ],
+        (error, result) => {
+            if (error) return console.log('error adding products', error);
 
+            console.log(`Success! Added ${result.insertedCount} products. `);
+        }
+    ); //insertMany()
 
-
-    ])
-}
-    ]
-}
+}; // insertProducts()

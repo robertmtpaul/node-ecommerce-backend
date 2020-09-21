@@ -1,27 +1,30 @@
 // ====================MONGODB===========================//
 
 // DB initialisation
-const { MongoClient, ObjectId } = require('mongodb')
+const MongoClient= require('mongodb')
 let db; // initialise global variable to store the db connection object.
+const mongoose = require("mongoose");
 
 
 MongoClient.connect('mongodb://127.0.0.1:27017', { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
     
     if( err ) return console.log( err );
     
-    db: client.db( 'shopping'); // success!
+    db = client.db( 'shopping'); // success!
     console.log('Connected, using db:shopping');
     
 }); // .connect() mongoDB
 
-// TODO: initialise mongoose , install bcrypt
-// const mongoose = require("mongoose");
+// TODO: install bcrypt
 
 // ====================EXPRESS/CORS/JSON/ETC==========================//
 const SERVER_SECRET_KEY = 'CHICKEN'; //TODO: move to .env
-const PORT = 3333;
 const express = require('express');
+// const router = express.Router()
+// module.exports = router
 const app = express();
+const PORT = 1337;
+
 
 //Initialise Express server
 app.listen(PORT, () => {
@@ -43,7 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 //For checking passwords on login
 // const bcrypt = require...
 
-// ========================REQUESTS===============================///
+// ========================JSON===============================// GET /products: JSON index of all products.
 app.get("/products", (request, response) => {
     // const seeds = require('./seeds-products.js');
     // res.json(seeds.products);
@@ -54,9 +57,29 @@ app.get("/products", (request, response) => {
             return response.sendStatus(500); // report erorr at HTTP 500 to browser
         }
             response.json( result ); // send the products DB results back to the browser as JSON.
- 
+            // console.log('response', response.json);
+
         });
 
 }); // GET /products
+
+// GET /product/:id JSON product details
+app.get('/products/name', (request, response ) => {
+    // response.json( request.params)
+    db.collection('products').findOne(
+        { name : request.params.name },
+        (error, product ) => {
+            if ( error ) {
+                response.sendStatus(500);
+                return console.log('Error finding product', error);
+            }
+            response.json ( product );
+        
+        } // query callback
+    );
+
+}) //GET /products/:id
+
+
 
 

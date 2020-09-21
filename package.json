@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "seed": "node seeds-products.js"
+    "seed": "node products-seeds.js",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "mongodb": "^3.6.2",
     "mongoose": "^5.10.6"
   },
   "devDependencies": {
