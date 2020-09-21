@@ -46,7 +46,7 @@ const PORT = 1337;
 //Initialise Express server
 app.listen(PORT, () => {
     console.log(`server listening on port ${PORT}...`)
-    console.log('server started at http://localhost:3333')
+    console.log(`server started at http://localhost:${PORT}`)
 })
 
 // ====================LOGINS===============================//
