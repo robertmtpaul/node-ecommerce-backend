@@ -18,6 +18,8 @@ const bcrypt = require('bcrypt');
 // For login decoding:
 const jwtAuthenticate = require('express-jwt')
 
+const PORT = process.env.PORT || 1337;
+
 //To enable support for JSON-encoded request bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +42,6 @@ let db = mongoose.connection;
 
 // ====================EXPRESS/CORS/JSON/ETC==========================//
 const SERVER_SECRET_KEY = 'CHICKEN'; //TODO: move to .env
-const PORT = 1337;
 
 
 //Initialise Express server
