@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "seed": "node products-seeds.js",
+    "seed": "node seeds.js",
     "start": "nodemon index.js"
   },
   "repository": {
@@ -20,9 +20,12 @@
   "homepage": "https://github.com/robertmtpaul/node-ecommerce-backend#readme",
   "dependencies": {
     "axios": "^0.20.0",
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.6"
   },
