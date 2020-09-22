@@ -26,8 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // ====================MONGOOSE===========================//
 
-//Set up the default mongoose connection
-const mongoDB = 'mongodb://127.0.0.1:27017/shopping'
+// Set up the default mongoose connection
+const mongoDB = 'mongodb+srv://robbiepablo:imbecile-confines-toupee@gaproject.izlhk.mongodb.net/shopping?retryWrites=true&w=majority'
+
 mongoose.connect(mongoDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

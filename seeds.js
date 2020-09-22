@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Product = require('./models/Product');
 const User = require('./models/User');
 const bcrypt = require('bcrypt');
-const mongoDB = 'mongodb://127.0.0.1:27017/shopping'
+const mongoDB = 'mongodb+srv://robbiepablo:imbecile-confines-toupee@gaproject.izlhk.mongodb.net/shopping?retryWrites=true&w=majority'
 const jwt = require ('jsonwebtoken');
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
