@@ -18,6 +18,8 @@ const bcrypt = require('bcrypt');
 // For login decoding:
 const jwtAuthenticate = require('express-jwt')
 
+const dotenv = require('dotenv').config();
+
 const PORT = process.env.PORT || 1337;
 
 //To enable support for JSON-encoded request bodies
@@ -26,10 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ====================MONGOOSE===========================//
 
-// Set up the default mongoose connection
-const mongoDB = 'mongodb+srv://robbiepablo:imbecile-confines-toupee@gaproject.izlhk.mongodb.net/shopping?retryWrites=true&w=majority'
-
-mongoose.connect(mongoDB, {
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })

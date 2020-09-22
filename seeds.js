@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const Product = require('./models/Product');
 const User = require('./models/User');
 const bcrypt = require('bcrypt');
-const mongoDB = 'mongodb+srv://robbiepablo:imbecile-confines-toupee@gaproject.izlhk.mongodb.net/shopping?retryWrites=true&w=majority'
+require('dotenv').config();
 const jwt = require ('jsonwebtoken');
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
