@@ -4,9 +4,10 @@ const Product = require('./models/Product');
 const User = require('./models/User');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
-const jwt = require ('jsonwebtoken');
 
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.LOCAL_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
