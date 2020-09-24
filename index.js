@@ -51,13 +51,10 @@ app.listen(PORT, () => {
 // Function to lock down routes that should be for logged-in users only
 const checkAuth = () => {
     return jwtAuthenticate({
-        secret: SERVER_SECRET_KEY,
+        secret: process.env.SERVER_SECRET_KEY,
         algorithms:  ['HS256']
     });
 };
-
-//TODO: move to .env
-const SERVER_SECRET_KEY = 'CHICKEN'; 
 
     app.post('/login', (request, response ) => {
     console.log('posted data: ', request.body );
@@ -72,7 +69,7 @@ const SERVER_SECRET_KEY = 'CHICKEN';
         }
 
         console.log('User found:', user );
-        //Check that found a user with the specified email, and
+        // Check that found a user with the specified email, and
         // also that the password given matches password for that user.
 
         if( user && bcrypt.compareSync( password, user.passwordDigest) ){
@@ -85,7 +82,7 @@ const SERVER_SECRET_KEY = 'CHICKEN';
                     email: user.email,
                     name: user.name
                 },
-                SERVER_SECRET_KEY,
+                process.env.SERVER_SECRET_KEY,
                 { expiresIn: '72h'}
             );
 
@@ -103,8 +100,6 @@ const SERVER_SECRET_KEY = 'CHICKEN';
 // ========================JSON===============================// 
 
 // GET /users: JSON index of all users.
-// TODO2:
-// --> checkAuth() 
 app.get("/users", checkAuth(), (request, response) => {
     // const seeds = require('./seeds-products.js');
     // res.json(seeds.products);
@@ -123,8 +118,6 @@ app.get("/users", checkAuth(), (request, response) => {
 
 
 // GET /products: JSON index of all products.
-// TODO2:
-// --> checkAuth() 
 app.get("/products", checkAuth(), (request, response) => {
     // const seeds = require('./seeds-products.js');
     // res.json(seeds.products);
@@ -140,8 +133,6 @@ app.get("/products", checkAuth(), (request, response) => {
 }); // GET /products
 
 // GET /product/:id JSON product details
-// TODO2:
-// --> checkAuth() 
 app.get('/products/:id', checkAuth(), (request, response) => {
     // response.json( request.params)
     console.log('Fetched product', request.params)

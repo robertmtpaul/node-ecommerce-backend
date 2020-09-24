@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-// mongoose.connect(process.env.LOCAL_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -122,10 +121,10 @@ const seedUsers = async () => {
 const printReport = async () => {
 
     // console colours
-    const yellow = '\x1b[33m',
-        green = '\x1b[32m',
-        blue = '\x1b[34m',
-        reset = '\x1b[0m';
+    const   yellow = '\x1b[33m',
+            green = '\x1b[32m',
+            blue = '\x1b[34m',
+            reset = '\x1b[0m';
 
     const productCheck = await Product.find()
     
