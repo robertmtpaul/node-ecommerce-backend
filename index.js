@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 1337;
 
 // establish mongoose connection to mongoDB URL
 // LIVE DB:
-// const MONGODB_URL = process.env.MONGODB_URL
+// const MONGODB_URL = process.env.LOCAL_MONGODB_URL
 mongoose.connect(process.env.MONGODB_URL, {
 // mongoose.connect(process.env.LOCAL_MONGODB_URL, {
     useNewUrlParser: true,
@@ -128,7 +128,7 @@ app.get("/users", checkAuth(), (request, response) => {
 // GET /products: JSON index of all products.
 // TODO2:
 // --> checkAuth() 
-app.get("/products", (request, response) => {
+app.get("/products", checkAuth(), (request, response) => {
     // const seeds = require('./seeds-products.js');
     // res.json(seeds.products);
     // should alwasy have .then / catch if using mongoose models. 
@@ -145,7 +145,7 @@ app.get("/products", (request, response) => {
 // GET /product/:id JSON product details
 // TODO2:
 // --> checkAuth() 
-app.get('/products/:id', (request, response) => {
+app.get('/products/:id', checkAuth(), (request, response) => {
     // response.json( request.params)
     console.log('Fetched product', request.params)
     Product.findOne(

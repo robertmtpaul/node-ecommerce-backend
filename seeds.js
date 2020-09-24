@@ -5,8 +5,8 @@ const User = require('./models/User');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-// mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.LOCAL_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -37,7 +37,7 @@ const seedProducts = async () => {
                 name: 'PS5',
                 category: 'Electronics',
                 image: 'https://images.unsplash.com/photo-1518908336710-4e1cf821d3d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80',
-                price: 200,
+                price: 500,
                 brand: 'Sony',
                 rating: 4.2,
                 numReviews: 10,
@@ -59,7 +59,7 @@ const seedProducts = async () => {
                 name: 'Xbox',
                 category: 'Electronics',
                 image: 'https://images.unsplash.com/photo-1586062129117-08db958ba215?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-                price: 200,
+                price: 699,
                 brand: 'Microsoft',
                 rating: 2.2,
                 numReviews: 2,
@@ -67,10 +67,10 @@ const seedProducts = async () => {
                 description: "An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. My text is long and beautiful, as, it has been well documented, are various other parts of my website.",
             },
             {
-                name: 'Wii',
+                name: 'Wii 1st generation',
                 category: 'Travel',
                 image: 'https://images.unsplash.com/10/wii.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
-                price: 200,
+                price: 100,
                 brand: 'Nintendo',
                 rating: 2.2,
                 numReviews: 3,
