@@ -29,10 +29,7 @@ const PORT = process.env.PORT || 1337;
 // =============================MONGOOSE==============================//
 
 // establish mongoose connection to mongoDB URL
-// LIVE DB:
-// const MONGODB_URL = process.env.LOCAL_MONGODB_URL
 mongoose.connect(process.env.MONGODB_URL, {
-// mongoose.connect(process.env.LOCAL_MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
