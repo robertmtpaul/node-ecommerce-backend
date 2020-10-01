@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 // Give access to mongoose models:
 const Product = require('./models/Product')
 const User = require('./models/User')
-// For accessing the routes definded in userRoute.js:
+// For accessing the routes defined in userRoute.js:
 const userRoute = require('./routes/userRoute')
 // For preventing CORS errors from frontend requests.
 const cors = require('cors');
@@ -107,7 +107,7 @@ app.get("/users", checkAuth(), (request, response) => {
 
         if (error) {
             console.log('Query error: ', error);
-            return response.sendStatus(500); // report erorr at HTTP 500 to browser
+            return response.sendStatus(500); // report error at HTTP 500 to browser
         }
         response.json(result); // send the products DB results back to the browser as JSON.
         // console.log('response', response.json);
