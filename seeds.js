@@ -35,7 +35,7 @@ const seedProducts = async () => {
             {
                 name: 'PS5',
                 category: 'Electronics',
-                image: 'https://images.unsplash.com/photo-1518908336710-4e1cf821d3d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80',
+                image: 'https://res.cloudinary.com/dgqqw6hwo/image/upload/v1601866371/PS5.png',
                 price: 500,
                 brand: 'Sony',
                 rating: 4.2,
