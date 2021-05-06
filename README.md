@@ -1,4 +1,4 @@
-# WeShop Node/Express server API
+# Mercadillo Node/Express server API
 Final project backend at General Assembly Software Engineering Immersive. 
 
 This is a server running on Node.js and Express, which provides JSON to display products on a React frontend.
