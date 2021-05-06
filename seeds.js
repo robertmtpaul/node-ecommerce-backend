@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTop
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
-db.once('open', async () => {
+db.once('open', async() => {
 
     //empty collections before seeding
     await User.deleteMany({});
@@ -28,39 +28,38 @@ db.once('open', async () => {
 
 }); //db.once initializer
 
-const seedProducts = async () => {
+const seedProducts = async() => {
 
     try {
-        return await Product.create([
-            {
-                name: 'PS5',
+        return await Product.create([{
+                name: 'PlayStation 5 Console',
                 category: 'Electronics',
                 image: 'https://res.cloudinary.com/dgqqw6hwo/image/upload/v1601866371/PS5.png',
                 price: 500,
                 brand: 'Sony',
-                rating: 4.2,
+                rating: 4,
                 numReviews: 10,
                 quantity: 4,
-                description: "He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. I think the only difference between me and the other placeholder text is that I’m more honest and my words are more beautiful.",
+                description: "The PS5 console unleashes new gaming possibilities that you never anticipated. Experience lightning fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers, and 3D Audio, and an all-new generation of incredible PlayStation games. Lightning Speed: Harness the power of a custom CPU, GPU, and SSD with Integrated I/O that rewrite the rules of what a PlayStation console can do. Stunning Games: Marvel at incredible graphics and experience new PS5 features. Breathtaking Immersion: Discover a deeper gaming experience with support for haptic feedback, adaptive triggers, and 3D Audio technology.",
             },
             {
-                name: 'Nice Suitcase',
-                category: 'Clothes',
-                image: 'https://images.unsplash.com/photo-1581553680321-4fffae59fccd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+                name: 'Varro Suitcase',
+                category: 'Luggage',
+                image: 'https://res.cloudinary.com/dgqqw6hwo/image/upload/v1620259472/Samsonite%20Varro.jpg',
                 price: 200,
                 brand: 'Samsonite',
-                rating: 4.5,
+                rating: 3,
                 numReviews: 5,
                 quantity: 33,
-                description: "I think the only difference between me and the other placeholder text is that I’m more honest and my words are more beautiful. The best taco bowls are made in Trump Tower Grill. I love Hispanics! Be careful, or I will spill the beans on your placeholder text. The concept of Lorem Ipsum was created by and for the Chinese in order to make U.S. design jobs non-competitive.",
+                description: "Samsonite’s VARRO collection combines contemporary design and functionality, setting a new benchmark for the modern traveller. VARRO is loaded with features such as organisational pockets, smooth double wheels for easier manoeuvrability and expandability allowing you to bring back more from your travels. The exterior shell also features an eye-catching arrow pattern, designed to reduce scratch visibility.",
             },
             {
-                name: 'Xbox',
+                name: 'Xbox Series S Console',
                 category: 'Electronics',
-                image: 'https://images.unsplash.com/photo-1586062129117-08db958ba215?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                image: 'https://images.unsplash.com/photo-1612801799890-4ba4760b6590?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2102&q=80',
                 price: 699,
                 brand: 'Microsoft',
-                rating: 2.2,
+                rating: 2,
                 numReviews: 2,
                 quantity: 22,
                 description: "An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. My text is long and beautiful, as, it has been well documented, are various other parts of my website.",
@@ -71,82 +70,81 @@ const seedProducts = async () => {
                 image: 'https://images.unsplash.com/10/wii.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
                 price: 100,
                 brand: 'Nintendo',
-                rating: 2.2,
+                rating: 5,
                 numReviews: 3,
                 quantity: 221,
                 description: "An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. You're telling the enemy exactly what you're going to do. No wonder you've been fighting Lorem Ipsum your entire adult life.",
             }
         ]);
     } catch (err) {
-        console.warn('Ereror creating products:', err);
+        console.warn('Error creating products:', err);
         process.exit(1);
     }
 
 }; // seedProducts
 
-const seedUsers = async () => {
-    try {
-        return await User.create([
-            {
-                name: 'Robbie',
-                email: 'robbie@ga.co',
-                passwordDigest: bcrypt.hashSync('chicken', 10),
-                bio: 'Rando 1',
-            },
-            {
-                name: 'Luke',
-                email: 'luke@ga.co',
-                passwordDigest: bcrypt.hashSync('chicken', 10),
-                bio: 'Rando 2',
-            },
-            {
-                name: 'Zara',
-                email: 'zara@ga.co',
-                passwordDigest: bcrypt.hashSync('chicken', 10),
-                bio: 'Rando 3',
-            },
-            {
-                name: 'Rando',
-                email: 'rando@ga.co',
-                passwordDigest: bcrypt.hashSync('chicken', 10),
-                bio: 'Rando 4',
-            }
-        ]);
-    } catch (err) {
-        console.log('Error creating users: ', err);
-        process.exit(1);
-    }
-} // seedUsers
+const seedUsers = async() => {
+        try {
+            return await User.create([{
+                    name: 'Robbie',
+                    email: 'robbie@ga.co',
+                    passwordDigest: bcrypt.hashSync('chicken', 10),
+                    bio: 'Rando 1',
+                },
+                {
+                    name: 'Luke',
+                    email: 'luke@ga.co',
+                    passwordDigest: bcrypt.hashSync('chicken', 10),
+                    bio: 'Rando 2',
+                },
+                {
+                    name: 'Zara',
+                    email: 'zara@ga.co',
+                    passwordDigest: bcrypt.hashSync('chicken', 10),
+                    bio: 'Rando 3',
+                },
+                {
+                    name: 'Rando',
+                    email: 'rando@ga.co',
+                    passwordDigest: bcrypt.hashSync('chicken', 10),
+                    bio: 'Rando 4',
+                }
+            ]);
+        } catch (err) {
+            console.log('Error creating users: ', err);
+            process.exit(1);
+        }
+    } // seedUsers
 
-const printReport = async () => {
+const printReport = async() => {
 
     // console colours
-    const   yellow = '\x1b[33m',
-            green = '\x1b[32m',
-            blue = '\x1b[34m',
-            reset = '\x1b[0m';
+    const yellow = '\x1b[33m',
+        green = '\x1b[32m',
+        blue = '\x1b[34m',
+        reset = '\x1b[0m';
 
     const productCheck = await Product.find()
-    
+
     productCheck.forEach(p => {
-        console.log(
-            green, `${p.name}:`, yellow, `${p.category}, ${p.price}`,
-            blue, `(${p.brand})`, reset,
-        );
-    }) //productCheck
+            console.log(
+                green, `${p.name}:`, yellow, `${p.category}, ${p.price}`,
+                blue, `(${p.brand})`, reset,
+            );
+        }) //productCheck
 
     const userCheck = await User.find()
-    .populate({
-      path: 'reservations.flight', // Mongoose populates this association
-      // model: 'Flight'
-    });
-  
-    userCheck.forEach(u => {
-      console.log(
-        yellow, `${u.name}`, green, `(${u.email}):`, reset,
-      );
-    });
-  
+        .populate({
+            path: 'reservations.flight', // Mongoose populates this association
+            // model: 'Flight'
+        });
 
-    
+    userCheck.forEach(u => {
+        console.log(
+            yellow, `${u.name}`, green, `(${u.email}):`, reset,
+        );
+    });
+
+
+
 }; // printReport()
