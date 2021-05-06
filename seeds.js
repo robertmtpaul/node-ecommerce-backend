@@ -56,7 +56,7 @@ const seedProducts = async() => {
             {
                 name: 'Xbox Series S Console',
                 category: 'Electronics',
-                image: 'https://images.unsplash.com/photo-1612801799890-4ba4760b6590?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2102&q=80',
+                image: 'https://res.cloudinary.com/dgqqw6hwo/image/upload/v1620260492/Xbox%20Series%20S.jpg',
                 price: 699,
                 brand: 'Microsoft',
                 rating: 2,
@@ -65,15 +65,15 @@ const seedProducts = async() => {
                 description: "An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. My text is long and beautiful, as, it has been well documented, are various other parts of my website.",
             },
             {
-                name: 'Wii 1st generation',
-                category: 'Travel',
-                image: 'https://images.unsplash.com/10/wii.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60',
-                price: 100,
+                name: 'Nintendo Switch',
+                category: 'Electronics',
+                image: 'https://res.cloudinary.com/dgqqw6hwo/image/upload/v1620260449/Nintendo%20Switch.jpg',
+                price: 409,
                 brand: 'Nintendo',
                 rating: 5,
                 numReviews: 3,
                 quantity: 221,
-                description: "An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. You're telling the enemy exactly what you're going to do. No wonder you've been fighting Lorem Ipsum your entire adult life.",
+                description: "Wii U is the latest home console from Nintendo. With unique games for all the family and the innovative Wii U GamePad controller, you can't play like this anywhere else.",
             }
         ]);
     } catch (err) {
